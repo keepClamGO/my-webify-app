@@ -35,7 +35,7 @@ function User() {
       <Button type="primary" onClick={() => {
           dispatch(increment()); // dispatch派发action
         }}>
-        同步增加
+        同步增加3
         {count}
       </Button>
       <Button type="primary" onClick={getdata}>
@@ -43,11 +43,11 @@ function User() {
       </Button>
       <hr />
       <Button type="primary" onClick={() => dispatch( incrementAsync(Number(incrementAmount) || 0))}>
-        异步增加
+        异步增加1
         {count}
       </Button>
       <Button type="primary" onClick={() => dispatch( getIpAsync(payload))}>
-        调用接口
+        调用接口2
         {/* {info} */}
       </Button>
     </div>
