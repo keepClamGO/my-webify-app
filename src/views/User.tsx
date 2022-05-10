@@ -12,8 +12,8 @@ let payload = {
   month: '5'
 }
 let payload2 = {
-  username: 'admin@ceshi.com',
-  password: 'qwe123456'
+  username: 'admin',
+  password: 'Cym@123123'
 }
 function User() {
  const [incrementAmount] = useState('2');

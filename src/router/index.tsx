@@ -1,8 +1,18 @@
 import { Suspense, lazy } from 'react'
 import { routesType } from '@/interface/types'
 import { useRoutes, RouteObject } from 'react-router-dom'
-// import BasicLayout from '@/views/BasicLayout'
 const routes: routesType[] = [
+    // {
+    //   path: '/',
+    //   redirect: '/Login'
+    // },
+    {
+      path: '/Login',
+      component: lazy(() => import('@/views/Login'))
+    },
+    { path: '/error',
+      component: lazy(() => import('@/views/404')) 
+    },
     {
       path: '/',
       component: lazy(() => import('@/views/BasicLayout')),
@@ -12,16 +22,8 @@ const routes: routesType[] = [
           component: lazy(() => import('@/views/Home'))
         },
         {
-          path: '/Index',
-          component: lazy(() => import('@/views/Index'))
-        },
-        {
           path: '/User',
           component: lazy(() => import('@/views/User'))
-        },
-        {
-          path: '/Login',
-          component: lazy(() => import('@/views/Login'))
         },
         {
           path: '/Register',
@@ -32,10 +34,6 @@ const routes: routesType[] = [
           component: lazy(() => import('@/views/Error'))
         },
       ]
-    },
-    {
-      path: '/404',
-      component: lazy(() => import('@/views/404'))
     }
 ];
 const syncRouter = (table: routesType[]): RouteObject[] => {

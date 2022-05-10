@@ -28,11 +28,13 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem(
-  <Link to={'/login'}>
-    go login路由
-  </Link>, '1', <MailOutlined />),
-  getItem('user', '2', <CalendarOutlined />),
-  getItem('Login', 'sub1', <AppstoreOutlined />, [
+    <Link to={'/Home'}>
+      首页
+    </Link>, '1', <MailOutlined />),
+  getItem(<Link to={'/user'}>
+    用户
+  </Link>, '2', <CalendarOutlined />),
+  getItem('锐角', 'sub1', <AppstoreOutlined />, [
     getItem('Option 3', '3'),
     getItem('Option 4', '4'),
     getItem('Submenu', 'sub1-2', null, [getItem('Option 5', '5'), getItem('Option 6', '6')]),
@@ -45,7 +47,7 @@ const items: MenuItem[] = [
   ]),
   getItem(
     <Link to={'/user'}>
-        go user路由
+      小时
     </Link>,
     'link',
     <LinkOutlined />,
@@ -66,9 +68,9 @@ const Menus = () => {
 
   return (
     <>
-      <div style={{height: '64px', display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
-      <Switch size="small" onChange={changeMode} />
-      <Switch size="small" onChange={changeTheme} />
+      <div style={{ height: '64px', display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+        <Switch size="small" onChange={changeMode} />
+        <Switch size="small" onChange={changeTheme} />
       </div>
       <Menu
         style={{}}

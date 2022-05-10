@@ -96,7 +96,7 @@ axios.interceptors.response.use((response) => {
   } else {
     // 错误抛到业务代码
     error.data = {}
-    error.data.msg = '请求超时或服务器异常22，请检查网络或联系管理员！'
+    error.data.msg = '请求超时或服务器异常，请检查网络或联系管理员！'
     message.error(error.data.msg)
   }
   return Promise.reject(error)

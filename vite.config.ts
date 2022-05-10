@@ -1,8 +1,12 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import vitePlugin from 'vite-plugin-imp'
 import path from 'path'
-export default defineConfig({
+
+export default defineConfig(({mode}) => {
+  const config = loadEnv(mode, './')
+  console.log(config)
+  return {
   build: {
     outDir: path.resolve(__dirname, 'dist'), // 指定输出路径
     assetsDir: 'dist', // 一个相对于 outDir 的静态资源输出路径
@@ -63,13 +67,14 @@ export default defineConfig({
   server: {
     host: '127.0.0.1',
     hmr: true,
-    proxy: {
-      'api': {
-        target: 'http://localhost',
-        ws: false,
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '')
-      }
-    }
+    // proxy: {
+    //   '/api': {
+    //     target: config.VITE_APP_BASEURL,
+    //     ws: false,
+    //     changeOrigin: true,
+    //     rewrite: path => path.replace(/^\/api/, '')
+    //   }
+    // }
   }
+}
 })
