@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import dayjs from 'dayjs'
 import { OrganizationGraph } from '@ant-design/graphs';
+interface State {    
+  date: any
+}
+const time = '2018'
 const data = {
   id: 'root',
   value: {
@@ -315,6 +320,7 @@ const config = {
 class Home extends React.Component {
   render() {
     return <div>
+      <span>{dayjs(new Date(time)).format('YYYY-MM-DD HH:mm:ss')}</span>
       <OrganizationGraph {...config} data={data} />
     </div>
   }

@@ -1,11 +1,13 @@
 import { Suspense, lazy } from 'react'
 import { routesType } from '@/interface/types'
-import { useRoutes, RouteObject } from 'react-router-dom'
+import { RouteObject } from 'react-router-dom'
+import NProgress from '@/components/Nprogress';
 const routes: routesType[] = [
-    // {
-    //   path: '/',
-    //   redirect: '/Login'
-    // },
+    {
+      path: '/',
+      redirect: '/Login',
+      component: lazy(() => import('@/views/Login'))
+    },
     {
       path: '/Login',
       component: lazy(() => import('@/views/Login'))
@@ -14,23 +16,23 @@ const routes: routesType[] = [
       component: lazy(() => import('@/views/404')) 
     },
     {
-      path: '/',
+      path: '/BasicLayout',
       component: lazy(() => import('@/views/BasicLayout')),
       children: [
         {
-          path: '/Home',
+          path: 'Home',
           component: lazy(() => import('@/views/Home'))
         },
         {
-          path: '/User',
+          path: 'User',
           component: lazy(() => import('@/views/User'))
         },
         {
-          path: '/Register',
+          path: 'Register',
           component: lazy(() => import('@/views/Register'))
         },
         {
-          path: '/Error',
+          path: 'Error',
           component: lazy(() => import('@/views/Error'))
         },
       ]
@@ -42,7 +44,7 @@ const syncRouter = (table: routesType[]): RouteObject[] => {
     mRouteTable.push({
       path: route.path,
       element: (
-        <Suspense fallback={''}>
+        <Suspense fallback={<NProgress/>}>
           <route.component />
         </Suspense>
       ),

@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios'
 import qs from 'qs'
 import { message } from 'antd'
 import { IData } from '@/interface/types'
+import NProgress from 'nprogress';
 const pendingRequest = new Map();
 
 function generateReqKey(config: AxiosRequestConfig) {
@@ -155,11 +156,13 @@ const showStatus = (status: number) => {
 
 export function fetch(url: string, params: IData): Promise<any> {
   return new Promise((resolve, reject) => {
+    NProgress.start()
     axios.get(url, {
       params: filterNull(params)
     })
       .then(response => {
         if (response.status === 200) {
+          NProgress.done()
           resolve(response.data)
         } else {
           reject(response)
@@ -180,10 +183,12 @@ export function fetch(url: string, params: IData): Promise<any> {
 
 export function singlefetch(url: string, params: IData): Promise<any> {
   return new Promise((resolve, reject) => {
+    NProgress.start()
     axios.get(url + '/' + filterNull(params))
       .then(response => {
         if (response && response.data.code === 200) {
           resolve(response.data)
+          NProgress.done()
         } else {
           reject(response)
         }
@@ -202,10 +207,12 @@ export function singlefetch(url: string, params: IData): Promise<any> {
  */
 export function post(url: string, params: IData): Promise<any> {
   return new Promise((resolve, reject) => {
+    NProgress.start()
     axios.post(url, filterNull(params))
       .then(response => {
         if (response && [200, 2000].includes(response.data.code)) {
           resolve(response.data)
+          NProgress.done()
         } else {
           reject(response)
         }
