@@ -3,10 +3,18 @@ import React from 'react';
 import Menus from '@/components/Menu'
 import Headers from '@/components/Header'
 import { Outlet } from 'react-router-dom';
-
-const { Header, Sider, Content } = Layout;
-
+import styled from 'styled-components'
+const { Sider, Content } = Layout;
+const Content_style = styled.div`
+  width: 100%;
+  padding: 20px;
+  background-color: #f6f6f6;
+  .site-layout-background {
+    height: 100%;
+  }
+`
 class SiderDemo extends React.Component {
+
   state = {
     collapsed: false,
   };
@@ -20,14 +28,16 @@ class SiderDemo extends React.Component {
   render() {
     return (
       <Layout>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed} theme='light'>
-          <Menus/>
-        </Sider>
-        <Layout className="site-layout">
-          <Headers />
-          <Content className="site-layout-background">
-            <Outlet />
-          </Content>
+        <Headers />
+        <Layout>
+          <Sider width={180} theme='light'>
+            <Menus />
+          </Sider>
+          <Content_style>
+            <Content className="site-layout-background">
+              <Outlet />
+            </Content>
+          </Content_style>
         </Layout>
       </Layout>
     );

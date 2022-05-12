@@ -20,6 +20,14 @@ const routes: routesType[] = [
       component: lazy(() => import('@/views/BasicLayout')),
       children: [
         {
+          path: 'UpdateCheck',
+          component: lazy(() => import('@/views/RingManagement/UpdateCheck'))
+        },
+        {
+          path: 'UploadCheck',
+          component: lazy(() => import('@/views/RingManagement/uploadCheck'))
+        },
+        {
           path: 'Home',
           component: lazy(() => import('@/views/Home'))
         },

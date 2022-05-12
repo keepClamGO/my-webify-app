@@ -1,3 +1,7 @@
+export interface Ilogin {
+  username: string;
+  password: string;
+}
 export interface Ipayload {
   [prop: string]: any
 }
