@@ -1,0 +1,177 @@
+{
+  "id": "2457359",
+  "name": "滴滴",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "桔厂内购",
+  "glyphs": [
+    {
+      "icon_id": "201557",
+      "name": "关闭",
+      "font_class": "guanbi",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "9974754",
+      "name": "感叹号-圈",
+      "font_class": "gantanhao-quan",
+      "unicode": "e70f",
+      "unicode_decimal": 59151
+    },
+    {
+      "icon_id": "26196196",
+      "name": "形状 20",
+      "font_class": "a-xingzhuang20",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "26196200",
+      "name": "形状 21",
+      "font_class": "a-xingzhuang21",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
+      "icon_id": "25694009",
+      "name": "姓名",
+      "font_class": "xingming",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "25694010",
+      "name": "团购",
+      "font_class": "tuangou",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "25694011",
+      "name": "定位",
+      "font_class": "dingwei1",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "25694012",
+      "name": "秒杀",
+      "font_class": "miaosha",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "974955",
+      "name": "已结束",
+      "font_class": "yijieshu",
+      "unicode": "e6dc",
+      "unicode_decimal": 59100
+    },
+    {
+      "icon_id": "17605467",
+      "name": "等待",
+      "font_class": "dengdai",
+      "unicode": "e816",
+      "unicode_decimal": 59414
+    },
+    {
+      "icon_id": "3185528",
+      "name": "问好",
+      "font_class": "wenhao",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "295717",
+      "name": "锁",
+      "font_class": "password",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "577314",
+      "name": "加号2-fill",
+      "font_class": "jiahao",
+      "unicode": "e728",
+      "unicode_decimal": 59176
+    },
+    {
+      "icon_id": "5184451",
+      "name": "减号1-fill",
+      "font_class": "jianhao",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "20726056",
+      "name": "日历",
+      "font_class": "rili",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    },
+    {
+      "icon_id": "20725629",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "20725606",
+      "name": "操作",
+      "font_class": "caozuo",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "20725589",
+      "name": "管理员_画板 1",
+      "font_class": "guanliyuan_huaban1",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "20725363",
+      "name": "商品_画板 1",
+      "font_class": "shangpin_huaban1",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "20725079",
+      "name": "订单",
+      "font_class": "dingdan",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "20725034",
+      "name": "商户",
+      "font_class": "shanghu",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "16965873",
+      "name": "Ok 拷贝",
+      "font_class": "Okkaobei",
+      "unicode": "e6f2",
+      "unicode_decimal": 59122
+    },
+    {
+      "icon_id": "20724722",
+      "name": "定位",
+      "font_class": "dingwei",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "7307664",
+      "name": "个人中心",
+      "font_class": "gerenzhongxin",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    }
+  ]
+}

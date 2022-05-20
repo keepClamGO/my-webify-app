@@ -1,10 +1,10 @@
-import { Layout } from 'antd';
-import React from 'react';
+import { Layout } from 'antd'
+import React from 'react'
 import Menus from '@/components/Menu'
 import Headers from '@/components/Header'
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom'
 import styled from 'styled-components'
-const { Sider, Content } = Layout;
+const { Sider, Content } = Layout
 const Content_style = styled.div`
   width: 100%;
   padding: 20px;
@@ -14,18 +14,17 @@ const Content_style = styled.div`
   }
 `
 class SiderDemo extends React.Component {
-
   state = {
-    collapsed: false,
-  };
+    collapsed: false
+  }
 
   toggle = () => {
     this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
+      collapsed: !this.state.collapsed
+    })
+  }
 
-  render() {
+  render () {
     return (
       <Layout>
         <Headers />
@@ -40,8 +39,8 @@ class SiderDemo extends React.Component {
           </Content_style>
         </Layout>
       </Layout>
-    );
+    )
   }
 }
 
-export default () => <SiderDemo />;
+export default () => <SiderDemo />

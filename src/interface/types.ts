@@ -1,3 +1,4 @@
+import React from 'react'
 export interface Ilogin {
   username: string;
   password: string;
@@ -20,7 +21,7 @@ type Imeta = {
   [propName: string]: any;
 }
 export interface routesType {
-  path: string,//路由路径
+  path: string, // 路由路径
   exact?: boolean,
   component?: React.LazyExoticComponent,
   children?: any[]

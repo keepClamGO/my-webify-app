@@ -1,8 +1,9 @@
-import { Avatar, Dropdown, Layout, Menu, Space, Image } from 'antd';
-import React,{useState} from 'react';
+import { Avatar, Dropdown, Layout, Menu, Space, Image } from 'antd'
+import React from 'react'
 import styled from 'styled-components'
-import { UserOutlined } from '@ant-design/icons';
-import logo from '@/assets/logo.png';
+import { UserOutlined } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
+import logo from '@/assets/logo.png'
 const Header_style = styled.div`
   height: 64px;
   line-height: 64px;
@@ -19,34 +20,33 @@ const Header_style = styled.div`
     background-color: #3c3c44;
     color: #fff;
   }
-  .ant-image-img{
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-  }
   .header_title{
     font-size: 20px;
     margin-left: 15px;
-    vertical-align: middle;
+    vertical-align: -webkit-baseline-middle;
     font-weight: 600;
   }
 `
-const { Header } = Layout;
+const { Header } = Layout
 const MyHeader: React.FC = () => {
-  const [user] = useState({username:'田欣'});
-
+  const userInfo = window.localStorage.getItem('userInfo')
+  const login = JSON.parse(userInfo || '')
+  const navigate = useNavigate()
   const handleChange = (e: { key: string }) => {
-  };
+    window.localStorage.removeItem('token')
+    window.localStorage.removeItem('userInfo')
+    navigate('/Login', { state: { test: '1' } })
+  }
 
   const menu = (
     <Menu onClick={handleChange}>
       <Menu.Item key="0">退出登录</Menu.Item>
     </Menu>
-  );
+  )
   return (
     <Header_style>
       <Header>
-        <div>        
+        <div>
           <Image
           width={''}
           src={logo}
@@ -58,12 +58,12 @@ const MyHeader: React.FC = () => {
         <Dropdown overlay={menu}>
           <Space>
             <Avatar icon={<UserOutlined />} />
-            {user?.username}
+            {login?.username}
           </Space>
         </Dropdown>
       </Header>
     </Header_style>
-  );
-};
+  )
+}
 
-export default MyHeader;
+export default MyHeader

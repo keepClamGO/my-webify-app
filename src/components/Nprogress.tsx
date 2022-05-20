@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react'
 import 'nprogress/nprogress.css'
 import nprogress from 'nprogress'
 
@@ -11,7 +11,7 @@ const NProgress: React.FC = () => {
   }, [])
   return (
     <Fragment />
-  );
-};
+  )
+}
 
-export default NProgress;
+export default NProgress

@@ -1,39 +1,39 @@
 // 请求封装
-import axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import qs from 'qs'
 import { message } from 'antd'
 import { IData } from '@/interface/types'
-import NProgress from 'nprogress';
-const pendingRequest = new Map();
+import NProgress from 'nprogress'
+const pendingRequest = new Map()
 
-function generateReqKey(config: AxiosRequestConfig) {
-  const { method, url, params, data } = config;
+function generateReqKey (config: AxiosRequestConfig) {
+  const { method, url, params, data } = config
   return [method, url, qs.stringify(params), qs.stringify(data)].join('&')
 }
 
-function addPendingRequest(config: AxiosRequestConfig) {
-  const requestKey = generateReqKey(config);
+function addPendingRequest (config: AxiosRequestConfig) {
+  const requestKey = generateReqKey(config)
   config.cancelToken = config.cancelToken || new axios.CancelToken((cancel) => {
     if (!pendingRequest.has(requestKey)) {
       pendingRequest.set(requestKey, cancel)
     }
-  });
+  })
 }
 
-function removePendingRequest(config: AxiosRequestConfig) {
-  const requestKey = generateReqKey(config);
+function removePendingRequest (config: AxiosRequestConfig) {
+  const requestKey = generateReqKey(config)
   if (pendingRequest.has(requestKey)) {
-    const cancelToken = pendingRequest.get(requestKey);
-    cancelToken(requestKey);
-    pendingRequest.delete(requestKey);
+    const cancelToken = pendingRequest.get(requestKey)
+    cancelToken(requestKey)
+    pendingRequest.delete(requestKey)
   }
 }
 // 自定义判断元素类型JS
-let checkType = function (obj: any) {
+const checkType = function (obj: any) {
   return Object.prototype.toString.call(obj).toLowerCase()
 }
 // 参数过滤函数
-let filterNull = (o: any) => {
+const filterNull = (o: any) => {
   Object.keys(o).map(key => {
     if (o[key] === null) {
       delete o[key]
@@ -50,36 +50,35 @@ let filterNull = (o: any) => {
 }
 
 // 请求超时时间
-axios.defaults.timeout = 30000;
+axios.defaults.timeout = 30000
 // 环境地址
-axios.defaults.baseURL = import.meta.env.VITE_APP_BASEURL || '';
-
+// axios.defaults.baseURL = import.meta.env.VITE_APP_BASEURL || '';
+axios.defaults.baseURL = '/api'
 axios.defaults.withCredentials = false
-
-axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 // 请求拦截器
 axios.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    removePendingRequest(config); // 检查是否存在重复请求
-    addPendingRequest(config); // 将当前请求信息添加到 pendingRequest对象中
+    removePendingRequest(config) // 检查是否存在重复请求
+    addPendingRequest(config) // 将当前请求信息添加到 pendingRequest对象中
     config.headers = {
-      "Content-Type": "application/json",
-    };
-    config.data = JSON.stringify(config.data);
-    return config;
+      'Content-Type': 'application/json',
+      Authorization: localStorage.getItem('token') || ''
+    }
+    config.data = JSON.stringify(config.data)
+    return config
   },
   (error) => {
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-);
+)
 
 // 响应拦截器
 axios.interceptors.response.use((response) => {
-  console.log(response)
-  removePendingRequest(response.config); // 从 pendingRequest对象中移除请求
+  removePendingRequest(response.config) // 从 pendingRequest对象中移除请求
   const status = response.status
   let msg = ''
+  console.log('responseresponseresponseresponse', status)
   if (status < 200 || status >= 300) {
     // 处理http错误，抛到业务代码
     msg = showStatus(status)
@@ -91,13 +90,15 @@ axios.interceptors.response.use((response) => {
   }
   return response
 }, (error) => {
-  removePendingRequest(error.config || {}); // 从 pendingRequest对象中移除请求
+  const status = error.response.status
+  console.log('errorerrorerrorerrorerror', error)
+  removePendingRequest(error.config || {}) // 从 pendingRequest对象中移除请求
   if (axios.isCancel(error)) {
     console.log('repeated request: ' + error.message)
   } else {
     // 错误抛到业务代码
     error.data = {}
-    error.data.msg = '请求超时或服务器异常，请检查网络或联系管理员！'
+    error.data.msg = showStatus(status)
     message.error(error.data.msg)
   }
   return Promise.reject(error)
@@ -111,7 +112,7 @@ const showStatus = (status: number) => {
       message = '请求错误(400)'
       break
     case 401:
-      message = '未授权，请重新登录(401)'
+      message = '未授权(401)'
       break
     case 403:
       message = '拒绝访问(403)'
@@ -121,6 +122,9 @@ const showStatus = (status: number) => {
       break
     case 408:
       message = '请求超时(408)'
+      break
+    case 413:
+      message = '登录过期(413)'
       break
     case 500:
       message = '服务器错误(500)'
@@ -154,7 +158,7 @@ const showStatus = (status: number) => {
  * @returns {Promise}
  */
 
-export function fetch(url: string, params: IData): Promise<any> {
+export function fetch (url: string, params: IData): Promise<any> {
   return new Promise((resolve, reject) => {
     NProgress.start()
     axios.get(url, {
@@ -181,7 +185,7 @@ export function fetch(url: string, params: IData): Promise<any> {
  * @returns {Promise}
  */
 
-export function singlefetch(url: string, params: IData): Promise<any> {
+export function singlefetch (url: string, params: IData): Promise<any> {
   return new Promise((resolve, reject) => {
     NProgress.start()
     axios.get(url + '/' + filterNull(params))
@@ -205,7 +209,7 @@ export function singlefetch(url: string, params: IData): Promise<any> {
  * @param data
  * @returns {Promise}
  */
-export function post(url: string, params: IData): Promise<any> {
+export function post (url: string, params: IData): Promise<any> {
   return new Promise((resolve, reject) => {
     NProgress.start()
     axios.post(url, filterNull(params))
@@ -216,6 +220,57 @@ export function post(url: string, params: IData): Promise<any> {
         } else {
           reject(response)
         }
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+/**
+ * 封装get Download方法
+ * @param url
+ * @param blob
+ * @returns {Promise}
+ */
+
+export function getDownload (url: string, params: IData): Promise<any> {
+  return new Promise((resolve, reject) => {
+    NProgress.start()
+    axios.get(url, {
+      params: filterNull(params),
+      responseType: 'blob'
+    })
+      .then(response => {
+        resolve(response)
+        NProgress.done()
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+
+/**
+ * 封装post Download方法
+ * @param url
+ * @param blob
+ * @returns {Promise}
+ */
+
+export function postDownload (url: string, data: any): Promise<any> {
+  const instance = axios.create({
+    baseURL: '/api',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: localStorage.getItem('token') || ''
+    }
+  })
+  return new Promise((resolve, reject) => {
+    NProgress.start()
+    instance.post(url, data)
+      .then(({ data }) => {
+        resolve(data)
+        NProgress.done()
       })
       .catch(err => {
         reject(err)
